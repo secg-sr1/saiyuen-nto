@@ -102,7 +102,8 @@ export default function Model() {
   const setShowStructure = useStore(state => state.setShowStructure)
   const [expanded, setExpanded ] = useState(false);
 
-  const [ chipClickVisualization, setChipClickVisualization ] = useState(true);
+  const [ chipClickVisualizationA, setChipClickVisualizationA ] = useState(true);
+  const [ chipClickVisualizationB, setChipClickVisualizationB ] = useState(false);
   const [ chipClickInstructions, setChipClickInstructions ] = useState(false);
   const [ showAccordion, setShowAccordion ] = useState(false);
 
@@ -120,13 +121,21 @@ export default function Model() {
     setExpanded(!expanded);
   }
 
-  const handleChipClickVisualization = () => {
-    setChipClickVisualization(true);
+  const handleChipClickVisualizationA = () => {
+    setChipClickVisualizationA(true);
+    setChipClickVisualizationB(false);
+    setChipClickInstructions(false);
+  }
+
+  const handleChipClickVisualizationB = () => {
+    setChipClickVisualizationA(false);
+    setChipClickVisualizationB(true)
     setChipClickInstructions(false);
   }
 
   const handleChipClickInstructions = () => {
-    setChipClickVisualization(false);
+    setChipClickVisualizationA(false);
+    setChipClickVisualizationB(false);
     setChipClickInstructions(true);
   }
 
@@ -197,9 +206,9 @@ export default function Model() {
           
           }}>
           
-            <Accordion>
+            <Accordion sx={{backgroundColor:'transparent', border:'1px solid rgba(255, 255, 255, 0.2)', color:'#FFFFFF'}}>
               <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
+                expandIcon={<ExpandMoreIcon sx={{color:'#FFFFFF', transform: expanded ? 'rotate(0deg)' : 'rotate(180deg)', transition: 'transform 0.3s ease',}} />}
                 aria-controls="panel1-content"
                 id="panel1-header"
               >
@@ -208,7 +217,7 @@ export default function Model() {
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Card sx={{borderRadius:5, boxShadow:5}}>
+                <Card sx={{borderRadius:5, boxShadow:5, backgroundColor:'transparent', border:'1px solid rgba(255, 255, 255, 0.2)'}}>
                   <CardHeader
                     title=""
                     subheader=""
@@ -216,11 +225,30 @@ export default function Model() {
                   />
   
   
-                    {
+                    {/* {
                       chipClickVisualization && 
                         <CardMedia 
                         component="img"
                         src="https://github.com/secg-sr1/saiyuen-nto/blob/main/public/bridge-04-elements-structure-00.png?raw=true"
+                        sx={{ height: 200 }}
+                        />
+                    } */}
+
+                    {
+                      chipClickVisualizationA && 
+                        <CardMedia 
+                        component="img"
+                        src="https://github.com/secg-sr1/saiyuen-nto/blob/main/public/bridge-04-elements-structure-00.png?raw=true"
+                        sx={{ height: 200 }}
+                        />
+                    }
+
+
+                    {
+                      chipClickVisualizationB && 
+                        <CardMedia 
+                        component="img"
+                        src="https://github.com/secg-sr1/saiyuen-gamma/blob/main/public/bridge-03-img-01.png?raw=true"
                         sx={{ height: 200 }}
                         />
                     }
@@ -239,37 +267,38 @@ export default function Model() {
                       <CardActions disableSpacing>
                         
                         <Stack direction="row">
-                            <Chip label="visualization" onClick={handleChipClickVisualization} sx={{fontFamily:'Montserrat, Arial, sans-serif', fontWeight:400, backgroundColor: chipClickVisualization ? "#B2BEB5" : "#E5E4E2" }}/>
-                            <Chip label="instructions" onClick={handleChipClickInstructions} sx={{fontFamily:'Montserrat, Arial, sans-serif', fontWeight:400, backgroundColor: chipClickInstructions ? "#B2BEB5" : "#E5E4E2"}}/>
+                          <Chip variant='outlined' label="visualization01" onClick={handleChipClickVisualizationA} sx={{fontFamily:'Montserrat, Arial, sans-serif', fontWeight:400, backgroundColor: chipClickVisualizationA ? "#5a5a5a" : "#282828", color:'#FFFFFF' }}/>
+                          <Chip variant='outlined' label="visualization02" onClick={handleChipClickVisualizationB} sx={{fontFamily:'Montserrat, Arial, sans-serif', fontWeight:400, backgroundColor: chipClickVisualizationB ? "#5a5a5a" : "#282828", color:'#FFFFFF' }}/>
+                          <Chip variant='outlined' label="instructions" onClick={handleChipClickInstructions} sx={{fontFamily:'Montserrat, Arial, sans-serif', fontWeight:400, backgroundColor: chipClickInstructions ? "#5a5a5a" : "#282828", color:'#FFFFFF'}}/>
                         </Stack>
   
-                        <ExpandMore
+                        {/* <ExpandMore
                           expand={expanded}
                           onClick={handleExpandClick}
                           aria-expanded={expanded}
                           arial-label="show more"
                         >
-                          <ExpandMoreIcon />
-                        </ExpandMore>
+                          <ExpandMoreIcon sx={{color:'#FFFFFF'}} />
+                        </ExpandMore> */}
   
                       </CardActions>
   
-                      <Collapse in={expanded} timeout="auto" unmountOnExit>
+                      {/* <Collapse in={expanded} timeout="auto" unmountOnExit>
                           <CardContent>
                             <Typography sx={{ fontWeight:200, fontSize:"16px"}}>
                             - 象徵著過去與未來的連接。
                             </Typography>
                           </CardContent>
-                      </Collapse>
+                      </Collapse> */}
   
                 </Card>
   
               </AccordionDetails>
             </Accordion>
   
-            <Accordion>
+            <Accordion sx={{backgroundColor:'transparent', border:'1px solid rgba(255, 255, 255, 0.2)', color:'#FFFFFF'}}>
               <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
+                expandIcon={<ExpandMoreIcon sx={{color:'#FFFFFF', transform: expanded ? 'rotate(0deg)' : 'rotate(180deg)', transition: 'transform 0.3s ease',}}/>}
                 aria-controls="panel1-content"
                 id="panel1-header"
               >
@@ -278,15 +307,15 @@ export default function Model() {
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <FormControlLabel control={<Checkbox defaultChecked color='#000000' /> } onChange={handleCheckboxChangeBase} label="Base" sx={{fontFamily:'Montserrat, Arial, sans-serif', fontWeight:300}} />
-                <FormControlLabel control={<Checkbox defaultChecked color='#000000' />} onChange={handleCheckboxChangeStructure} label="Structure" sx={{fontFamily:'Montserrat, Arial, sans-serif', fontWeight:300}} />
+                <FormControlLabel control={<Checkbox defaultChecked sx={{color:'#FFFFFF'}} /> } onChange={handleCheckboxChangeBase} label="Base" sx={{fontFamily:'Montserrat, Arial, sans-serif', fontWeight:300}} />
+                <FormControlLabel control={<Checkbox defaultChecked sx={{color:'#FFFFFF'}} />} onChange={handleCheckboxChangeStructure} label="Structure" sx={{fontFamily:'Montserrat, Arial, sans-serif', fontWeight:300}} />
                 {/* <Typography>Click the floor of the bridge</Typography> */}
               </AccordionDetails>
             </Accordion>
   
-            <Accordion>
+            <Accordion sx={{backgroundColor:'transparent', border:'1px solid rgba(255, 255, 255, 0.2)', color:'#FFFFFF'}}>
               <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
+                expandIcon={<ExpandMoreIcon sx={{color:'#FFFFFF', transform: expanded ? 'rotate(0deg)' : 'rotate(180deg)', transition: 'transform 0.3s ease',}} />}
                 aria-controls="panel1-content"
                 id="panel1-header"
               >
@@ -295,7 +324,7 @@ export default function Model() {
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Card sx={{borderRadius:5, boxShadow:5}}>
+                <Card sx={{borderRadius:5, boxShadow:5, backgroundColor:'transparent', border:'1px solid rgba(255, 255, 255, 0.2)'}}>
                   <CardHeader
                     // action={
                     //   <IconButton >
@@ -323,27 +352,27 @@ export default function Model() {
                         </IconButton> */}
   
                         <IconButton aria-label="share">
-                            <ShareIcon />
+                            <ShareIcon sx={{color:'#FFFFFF'}}/>
                         </IconButton>
   
-                        <ExpandMore
+                        {/* <ExpandMore
                           expand={expanded}
                           onClick={handleExpandClick}
                           aria-expanded={expanded}
                           arial-label="show more"
                         >
-                          <ExpandMoreIcon />
-                        </ExpandMore>
+                          <ExpandMoreIcon sx={{color:'#FFFFFF'}}/>
+                        </ExpandMore> */}
   
                       </CardActions>
   
-                      <Collapse in={expanded} timeout="auto" unmountOnExit>
+                      {/* <Collapse in={expanded} timeout="auto" unmountOnExit>
                           <CardContent>
-                            <Typography sx={{ fontWeight:200, fontSize:"16px"}}>
+                            <Typography sx={{ fontWeight:200, fontSize:"16px", color:'#FFFFFF'}}>
                             - 象徵著過去與未來的連接。
                             </Typography>
                           </CardContent>
-                      </Collapse>
+                      </Collapse> */}
   
                 </Card>
               </AccordionDetails>
