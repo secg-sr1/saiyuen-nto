@@ -248,7 +248,7 @@ export default function Model() {
                       chipClickVisualizationA && 
                         <CardMedia 
                         component="img"
-                        src="https://github.com/secg-sr1/saiyuen-nto/blob/main/public/bridge-04-elements-structure-00.png?raw=true"
+                        src="https://github.com/secg-sr1/saiyuen-nto/blob/main/public/brige-04-render-00.png?raw=true"
                         sx={{ height: 200 }}
                         />
                     }
@@ -258,7 +258,7 @@ export default function Model() {
                       chipClickVisualizationB && 
                         <CardMedia 
                         component="img"
-                        src="https://github.com/secg-sr1/saiyuen-gamma/blob/main/public/bridge-03-img-01.png?raw=true"
+                        src="https://github.com/secg-sr1/saiyuen-nto/blob/main/public/brige-04-render-01.png?raw=true"
                         sx={{ height: 200 }}
                         />
                     }
@@ -317,8 +317,8 @@ export default function Model() {
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <FormControlLabel control={<Checkbox defaultChecked sx={{color:'#FFFFFF'}} /> } onChange={handleCheckboxChangeBase} label="Base" sx={{fontFamily:'Montserrat, Arial, sans-serif', fontWeight:300}} />
-                <FormControlLabel control={<Checkbox defaultChecked sx={{color:'#FFFFFF'}} />} onChange={handleCheckboxChangeStructure} label="Structure" sx={{fontFamily:'Montserrat, Arial, sans-serif', fontWeight:300}} />
+                <FormControlLabel control={<Checkbox defaultChecked sx={{ color: '#FFFFFF', '&.Mui-checked': { color: '#FFFFFF',},}} /> } onChange={handleCheckboxChangeBase} label="Base" sx={{fontFamily:'Montserrat, Arial, sans-serif', fontWeight:300}} />
+                <FormControlLabel control={<Checkbox defaultChecked sx={{ color: '#FFFFFF', '&.Mui-checked': { color: '#FFFFFF',},}} /> } onChange={handleCheckboxChangeStructure} label="Structure" sx={{fontFamily:'Montserrat, Arial, sans-serif', fontWeight:300}} />
                 {/* <Typography>Click the floor of the bridge</Typography> */}
               </AccordionDetails>
             </Accordion>
